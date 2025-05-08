@@ -1,6 +1,7 @@
 import React from "react";
 import Cards from "./Cards";
 import Hero from "./Hero";
+import Footer from "./Footer";
 
 function Main({ search, setSearch, data, setData , fav, setFav }) {
   return (
@@ -13,6 +14,7 @@ function Main({ search, setSearch, data, setData , fav, setFav }) {
         fav={fav}
         setFav={setFav}
       />
+      <Footer />
     </>
   );
 }
