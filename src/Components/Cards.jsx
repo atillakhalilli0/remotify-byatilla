@@ -12,15 +12,29 @@ function Cards({ search, data, setData, fav, setFav }) {
     setData(data.filter(item => item.id !== id));
   }
 
-  function handleFav(id){
-    setFav([fav, ...{id}])
+  function handleFav(id, isFavorite){
+    if (isFavorite) {
+      if (!fav.includes(id)) {
+        setFav([...fav, id]);
+      }
+    } else {
+      setFav(fav.filter(favId => favId !== id));
+    }
   }
 
   return (
     <>
       <div className="w-[80%] mx-auto grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 my-20">
         {filteredJobs.length > 0 ? (
-          filteredJobs.map((job) => <JobCard handleDelete={handleDelete} handleFav={handleFav} key={job.id} {...job} />)
+          filteredJobs.map((job) => (
+            <JobCard 
+              handleDelete={handleDelete} 
+              handleFav={handleFav} 
+              key={job.id} 
+              isFavorite={fav.includes(job.id)}
+              {...job} 
+            />
+          ))
         ) : (
           <div className="col-span-full text-center text-gray-500">
             No jobs found matching "{search}"

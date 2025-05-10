@@ -12,11 +12,12 @@ function JobCard({
   salary,
   description,
   handleDelete,
-  handleFav
+  handleFav,
+  isFavorite
 }) {
   return (
     <div className="relative bg-white p-5 rounded-2xl shadow-md hover:shadow-2xl transition duration-300 flex flex-col gap-3 border hover:-translate-y-2">
-      <FavButton handleFav={handleFav} id={id} />
+      <FavButton handleFav={handleFav} id={id} isFavorite={isFavorite} />
 
       <h2 className="text-xl font-bold text-gray-800">{title}</h2>
 

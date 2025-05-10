@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-function FavButton({ id, handleFav }) {
-  const [isFav, setIsFav] = useState(false);
+function FavButton({ id, handleFav, isFavorite }) {
+  const [isLocalFav, setIsLocalFav] = useState(isFavorite || false);
+
+  useEffect(() => {
+    setIsLocalFav(isFavorite || false);
+  }, [isFavorite]);
 
   const toggleFav = () => {
-    const newState = !isFav;
-    setIsFav(newState);
+    const newState = !isLocalFav;
+    setIsLocalFav(newState);
     handleFav(id, newState);
   };
 
@@ -13,9 +17,9 @@ function FavButton({ id, handleFav }) {
     <button
       onClick={toggleFav}
       className={`absolute top-3 right-3 text-xl transition`}
-      title={isFav ? 'Unsave' : 'Save'}
+      title={isLocalFav ? 'Unsave' : 'Save'}
     >
-      {isFav ? '❤️' : '🤍'}
+      {isLocalFav ? '❤️' : '🤍'}
     </button>
   );
 }
