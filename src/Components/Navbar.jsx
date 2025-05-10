@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Logo from "./Logo";
 import Input from "./Input";
 import { Menu, X } from "lucide-react";
+import './Navbar.css'
 
 function Navbar({ setSearch }) {
   const [menuOpen, setMenuOpen] = useState(false);
